@@ -1,0 +1,68 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  3.0.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      p;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#include        "inputs"
+
+dimensions      [1 -1 -2 0 0 0 0];
+
+internalField   uniform $pressure;
+
+boundaryField
+{
+    inlet
+    {
+        type            zeroGradient;
+    }
+
+    outlet
+    {
+        type            waveTransmissive;
+        field           p;
+        phi             phi;
+        rho             rho;
+        psi             thermo:psi;
+        gamma           1.4;
+        fieldInf        $pressure;
+        // lInf: A measure of how far away the far-field condition should be. 
+        lInf            0.5; 
+        value           $internalField;
+    }
+
+    front_and_back
+    {
+        type            empty;
+    }
+
+    vehicle
+    {
+        type            zeroGradient;
+    }
+
+    tunnel
+    {
+        type            slip;
+    }
+    wedge0
+    {
+        type            wedge;
+    }
+    wedge1
+    {
+        type            wedge;
+    }
+}
+
+// ************************************************************************* //

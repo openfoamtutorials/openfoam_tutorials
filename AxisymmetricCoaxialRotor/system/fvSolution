@@ -1,0 +1,66 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  4.0                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers // iteration stopping criteria
+{
+  p
+  {
+    solver          GAMG;
+    smoother        GaussSeidel;
+    tolerance       1e-6;
+    relTol          0.1;
+  }
+
+  "U"
+  {
+    solver          smoothSolver;
+    smoother        symGaussSeidel;
+    tolerance       1e-6;
+    relTol          0.1;
+  }
+
+  "(k|omega|epsilon)"
+  {
+    solver          smoothSolver;
+    smoother        symGaussSeidel;
+    tolerance       1e-6;
+    relTol          0.1;
+  }
+}
+
+SIMPLE // global stopping criteria
+{
+    nNonOrthogonalCorrectors 1;
+    consistent      yes;
+
+    residualControl
+    {
+        U                   1e-3;
+        p                   1e-3;
+        "(k|epsilon|omega)" 5e-3;
+    }
+}
+
+relaxationFactors // stability criteria
+{
+    equations
+    {
+      U                     0.65;
+      "(k|omega|epsilon)"   0.95;
+    }
+}
+
+// ************************************************************************* //

@@ -1,0 +1,5 @@
+gmsh -3 mesh/main.geo
+gmshToFoam mesh/main.msh
+changeDictionary
+simpleFoam
+

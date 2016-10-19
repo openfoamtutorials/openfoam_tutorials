@@ -1,0 +1,94 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  3.0.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    pcorr
+    {
+        solver           GAMG;
+        tolerance        1e-6;
+        relTol           0.001;
+        smoother         GaussSeidel;
+        nPreSweeps       0;
+        nPostSweeps      2;
+        cacheAgglomeration true;
+        agglomerator     faceAreaPair;
+        nCellsInCoarsestLevel 100;
+        mergeLevels      1;
+    }
+
+    p
+    {
+        $pcorr
+        tolerance        1e-6;
+        relTol           0.001;
+    }
+
+    pFinal
+    {
+        $p;
+        tolerance        1e-6;
+        relTol           0.001;
+    }
+
+    "(U|nuTilda)"
+    {
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
+        tolerance       1e-09;
+        relTol          0.001;
+    }
+
+    "(U|nuTilda)Final"
+    {
+        $U;
+        tolerance       1e-09;
+        relTol          0;
+    }
+}
+
+PIMPLE
+{
+    correctPhi               yes;
+    // nOuterCorrectors = 1, => PISO (set relaxations to 1).
+    nOuterCorrectors         1;
+    // Sufficient nCorrectors is necessary for stability and convergence! 
+	nCorrectors              5;
+    nNonOrthogonalCorrectors 1;
+	pRefCell	0;
+	pRefValue	0;
+}
+
+relaxationFactors
+{
+  // These should be set to 1 when using PISO mode.
+  fields
+  {
+      p               1;
+  }
+  equations
+  {
+      "(U|nuTilda)"   1;
+      "(U|nuTilda)Final" 1;
+  }
+}
+
+cache
+{
+    grad(U);
+}
+
+// ************************************************************************* //

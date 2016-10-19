@@ -1,0 +1,5 @@
+gmsh -3 mesh/wedge.geo
+gmshToFoam mesh/wedge.msh
+changeDictionary
+simpleFoam
+
