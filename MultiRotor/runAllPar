@@ -1,0 +1,9 @@
+#!/bin/sh
+
+gmsh -3 mesh/main.geo && \
+  gmshToFoam mesh/main.msh && \
+  changeDictionary && \
+  decomposePar && \
+  mpirun -np 3 simpleFoam -parallel && \
+  reconstructPar -latestTime
+
