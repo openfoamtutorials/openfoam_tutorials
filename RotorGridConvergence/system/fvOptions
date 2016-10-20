@@ -1,0 +1,104 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  4.0                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvOptions;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+disk
+{
+  type            rotorDisk;
+  active          on;
+
+  rotorDiskCoeffs
+  {
+    selectionMode   cellZone;
+    cellZone        rotatingZone;
+
+    fields          (U);    // Names of fields on which to apply source
+    nBlades         2;      // Number of blades
+    tipEffect       1.0;   // Normalised radius above which lift = 0
+    // I modified the source to enable opposite rotation (as in a coax configuration)
+    //  Simply flip sign on rpm to get opposite rotation.
+    rpm             9000;
+    rhoRef          1.18;
+
+    inletFlowType   local;  // Inlet flow type specification
+
+    geometryMode    specified;
+    origin          (0 0 0);
+    axis            (0 1 0);
+    refDirection    (1 0 0);  // Reference direction
+                                // - used as reference for psi angle
+    trimModel       fixedTrim;  // fixed || targetForce
+
+    fixedTrimCoeffs
+    {
+      theta0         0;
+      theta1c        0;
+      theta1s        0;
+    }
+
+    flapCoeffs
+    {
+      beta0           0;  // Coning angle [deg]
+      beta1c          0;  // Lateral flapping coeff (cos coeff)
+      beta2s          0;  // Longitudinal flapping coeff (sin coeff)
+    }
+
+    blade
+    {
+      data
+      (
+        (profile1 (0 0 0))
+        (profile1 (0.0762 25  0.038))
+        (profile1 (0.2032 5   0.0125))
+      );
+    }
+
+    profiles
+    {
+      profile1
+      {
+        type lookup;
+        data
+        (
+          (-90 1.0 0.0)
+          (-25 1.0 0.0)
+          (-18 0.21 -1.45)
+          (-16 0.165 -1.3)
+          (-14 0.125 -1.1)
+          (-12 0.092 -0.95)
+          (-10 0.07 -0.8)
+          (-8 0.05 -0.64)
+          (-6 0.04 -0.5)
+          (-4 0.028 -0.32)
+          (-2 0.022 -0.18)
+          (0 0.02 0)
+          (2 0.022 0.18)
+          (4 0.028 0.32)
+          (6 0.04 0.5)
+          (8 0.05 0.64)
+          (10 0.07 0.8)
+          (12 0.092 0.95)
+          (14 0.125 1.1)
+          (16 0.165 1.3)
+          (18 0.21 1.45)
+          (25 1.0 0.0)
+          (90 1.0 0.0)
+        );
+      }
+    }
+  }
+}
+
+// ************************************************************************* //
