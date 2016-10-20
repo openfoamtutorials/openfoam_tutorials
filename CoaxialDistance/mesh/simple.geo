@@ -3,15 +3,15 @@ Geometry.Tolerance = 1e-12;
 
 rotorRadius = 8 * 0.0254;
 
-rotorSeparation = 0.75 * (2 * rotorRadius);
+rotorSeparation = 0.125 * (2 * rotorRadius);
 
-domainDistance = 15 * rotorRadius;
+tipLc = 0.04 * rotorRadius;
+auraLc = 0.16 * rotorRadius;
+fineDistance = 0.5 * rotorRadius;
+farLc = 1.0 * rotorRadius;
+domainDistance = 10 * rotorRadius;
 
-fineDistance = 1.0 * rotorRadius;
-
-tipLc = 0.02 * rotorRadius;
-hubLc = 1 * tipLc;
-farLc = rotorRadius;
+hubLc = 1.0 * tipLc;
 downstreamLc = farLc;
 
 wedgeAngle = 5 * Pi / 180;
@@ -57,10 +57,10 @@ Transfinite Surface{rotorSurface2};
 Recombine Surface{rotorSurface2};
 
 // Fine-mesh aura
-Point(ce++) = {0, -fineDistance, 0, tipLc}; p = ce; p3 = ce;
-Point(ce++) = {rotorRadius + fineDistance, -fineDistance, 0, tipLc};
-Point(ce++) = {rotorRadius + fineDistance, rotorSeparation + 2 * tipLc + fineDistance, 0, tipLc};
-Point(ce++) = {0, rotorSeparation + 2 * tipLc + fineDistance, 0, tipLc};
+Point(ce++) = {0, -fineDistance, 0, auraLc}; p = ce; p3 = ce;
+Point(ce++) = {rotorRadius + fineDistance, -fineDistance, 0, auraLc};
+Point(ce++) = {rotorRadius + fineDistance, rotorSeparation + 2 * tipLc + fineDistance, 0, auraLc};
+Point(ce++) = {0, rotorSeparation + 2 * tipLc + fineDistance, 0, auraLc};
 
 Line(ce++) = {p2, p}; l3 = ce;
 Line(ce++) = {p, p + 1};

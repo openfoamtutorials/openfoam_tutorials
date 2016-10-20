@@ -1,3 +1,6 @@
-Normalized Separation, Upstream (power, thrust), Downstream (power, thrust)
-0, (), (0, 0)
-0.75, (4.45905, 0.421313), (3.70255, 0.315614)
+# Diameter-Normalized Separation, 5 Deg. Wedge Upstream (power (W), thrust (N)), 5 Deg. Wedge Downstream (power (W), thrust (N)), Iterations
+0, (5.10, 0.463), (0, 0)
+0.125, (4.90, 0.444), (4.24, 0.348), 738
+0.375, (5.05, 0.460), (4.29, 0.336), 266
+0.75, (5.10, 0.463), (4.34, 0.330), 943
+1.5, (5.09, 0.462), (4.39, 0.334), 2000+

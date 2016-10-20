@@ -1,7 +1,7 @@
 #!/bin/sh
 
-gmsh -3 mesh/main.geo && \
-  gmshToFoam mesh/main.msh && \
+gmsh -3 mesh/simple.geo && \
+  gmshToFoam mesh/simple.msh && \
   changeDictionary && \
   simpleFoam
   #decomposePar
