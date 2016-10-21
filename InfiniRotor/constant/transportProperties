@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  3.0.0                                 |
+|  \\    /   O peration     | Version:  4.0                                   |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -10,27 +10,12 @@ FoamFile
     version     2.0;
     format      ascii;
     class       dictionary;
-    location    "system";
-    object      decomposeParDict;
+    object      transportProperties;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-numberOfSubdomains 4;
+transportModel  Newtonian;
 
-method          simple;
-
-simpleCoeffs
-{
-    n               (1 1 4);
-    delta           0.001;
-}
-
-hierarchicalCoeffs
-{
-    n               (2 2 1);
-    delta           0.001;
-    order           xyz;
-}
-
+nu              [0 2 -1 0 0 0 0] 1.5e-05;
 
 // ************************************************************************* //

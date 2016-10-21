@@ -1,7 +1,7 @@
 
 
 diameter = 16 * 0.0254;
-separation = 1.2; // normalized by diameter
+separation = 1.05; // normalized by diameter
 rotors = 4;
 
 rotorLc = 0.02 * diameter;
