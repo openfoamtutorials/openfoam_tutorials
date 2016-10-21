@@ -1,0 +1,6 @@
+Number of Rotors, Diameter-Normalized Separation, (Power (W), Thrust (N)), Iterations, Notes
+4, 1.2,  (2610, 134), 3500+, 40-10 pitch
+4, 1.2,  (1320, 122), 1050, 30-10 pitch
+4, 1.2,  (1805, 146), 1067, 30-15 pitch
+
+

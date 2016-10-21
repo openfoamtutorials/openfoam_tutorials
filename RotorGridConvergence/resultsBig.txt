@@ -1,0 +1,4 @@
+# 5 Deg. Wedge (Power (W), Thrust (N), Iterations), Rotor Radius Normalized (Tip LC, Aura LC, Aura Distance, Far LC, Far Distance)
+(38.2, 1.83, 806),    (0.04, 0.16, 0.5, 1.0, 10, 1e-4)
+
+

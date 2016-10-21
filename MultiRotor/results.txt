@@ -1,0 +1,5 @@
+Number of Rotors, Diameter-Normalized Separation, (Power (W), Thrust (N)), Iterations
+4, 1.2,  (338, 33.1), 1183
+4, 1.05, (338, 33), 1001
+
+

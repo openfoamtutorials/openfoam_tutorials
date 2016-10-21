@@ -1,7 +1,7 @@
 //Inputs
 Geometry.Tolerance = 1e-12;
 
-rotorRadius = 8 * 0.0254;
+rotorRadius = 13 * 0.0254;
 
 tipLc           = 0.04  * rotorRadius;
 auraLc          = 0.16  * rotorRadius;

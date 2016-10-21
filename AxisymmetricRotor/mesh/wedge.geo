@@ -2,7 +2,7 @@
 Geometry.Tolerance = 1e-12;
 
 rotorRadius = 8*0.0254; // m
-domainDistance = 5; // m
+domainDistance = 25*rotorRadius; // m
 
 rotorTipLc = 0.01*rotorRadius;
 rotorCenterLc = 4*rotorTipLc;

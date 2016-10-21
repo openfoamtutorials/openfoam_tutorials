@@ -36,8 +36,8 @@ disk
 
     geometryMode    specified;
     origin          (0 0 0);
-    axis            (0 1 0);
-    refDirection    (1 0 0);  // Reference direction
+    axis            (0 0 1);
+    refDirection    (0 1 0);  // Reference direction
                                 // - used as reference for psi angle
     trimModel       fixedTrim;  // fixed || targetForce
 
@@ -62,9 +62,6 @@ disk
         (profile1 (0 0 0))
         (profile1 (0.0762 25  0.038))
         (profile1 (0.2032 5   0.0125))
-        //(profile1 (0.11 25  0.062))
-        //(profile1 (0.33 5   0.02))
-
       );
     }
 

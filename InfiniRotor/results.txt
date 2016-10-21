@@ -1,0 +1,5 @@
+Diameter-Normalized Separation, (Power (W), Thrust (N)), Iterations
+1.2,  (, ),
+1.05, (, ),
+
+

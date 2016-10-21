@@ -29,7 +29,8 @@ disk
     tipEffect       1.0;   // Normalised radius above which lift = 0
     // I modified the source to enable opposite rotation (as in a coax configuration)
     //  Simply flip sign on rpm to get opposite rotation.
-    rpm             9000;
+    //rpm             9000;
+    rpm             5500;
     rhoRef          1.18;
 
     inletFlowType   local;  // Inlet flow type specification
@@ -60,8 +61,11 @@ disk
       data
       (
         (profile1 (0 0 0))
-        (profile1 (0.0762 25  0.038))
-        (profile1 (0.2032 5   0.0125))
+        //(profile1 (0.0762 25  0.038))
+        //(profile1 (0.2032 5   0.0125))
+        (profile1 (0.11 40  0.062))
+        (profile1 (0.33 10   0.02))
+
       );
     }
 

@@ -9,37 +9,30 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       dictionary;
-    object      controlDict;
+    class       volVectorField;
+    object      U;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-application     simpleFoam;
+Uinlet          (0 0 -2);
 
-startFrom       latestTime;
+dimensions      [0 1 -1 0 0 0 0];
 
-startTime       0;
+internalField   uniform $Uinlet;
 
-stopAt          endTime;
-
-endTime         5000;
-
-deltaT          1;
-
-writeControl    timeStep;
-
-writeInterval   50;
-
-purgeWrite      0;
-
-writeFormat     binary;
-
-writeCompression off;
-
-timeFormat      general;
-
-timePrecision   6;
-
-runTimeModifiable true;
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform $Uinlet;
+    }
+    outlet
+    {
+        type            pressureInletOutletVelocity;
+        value           uniform $Uinlet;
+    }
+    #includeEtc "caseDicts/setConstraintTypes"
+}
 
 // ************************************************************************* //
